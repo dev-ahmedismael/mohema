@@ -1,0 +1,32 @@
+<nav class="text-white py-2">
+  <div class="flex justify-between items-center container">
+    <!-- Logo -->
+    <a routerLink="">
+      <img
+        ngSrc="assets/images/logo.png"
+        alt="Logo"
+        width="40"
+        height="40"
+        priority
+      />
+    </a>
+
+    <!-- Navlinks -->
+    <ul class="hidden md:flex gap-5">
+      @for (navlink of navlinks; track navlink.id) {
+      <li class="cursor-pointer">{{ navlink.title }}</li>
+      }
+    </ul>
+
+    <!-- Language -->
+    <div class="flex gap-3 cursor-pointer">
+      <img
+        ngSrc="assets/images/language.png"
+        alt="Language"
+        width="25"
+        height="25"
+      />
+      <p>اللغة العربية</p>
+    </div>
+  </div>
+</nav>

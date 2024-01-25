@@ -1,0 +1,50 @@
+<section>
+  <div class="flex justify-end">
+    <button class="bg-teal-600 text-white rounded-lg shadow py-3 px-5">
+      تعديل بيانات المشروع
+    </button>
+  </div>
+
+  <!-- Main Page -->
+  <div class="mt-5 py-10 bg-white rounded-lg shadow-md container">
+    <!-- Project Logo -->
+    <div class="flex justify-center">
+      <div
+        style="width: 150px; height: 150px"
+        class="relative rounded-full ring-2 ring-teal-500 overflow-hidden"
+      >
+        <img [ngSrc]="apiUrl + '/' + project.logo" [alt]="project.title" fill />
+      </div>
+    </div>
+
+    <!-- Project Title & Description -->
+    <div class="my-5">
+      <p class="text-3xl text-center mb-3">{{ project.title }}</p>
+      <p class="text-sm text-center">{{ project.description }}</p>
+    </div>
+
+    <!-- Table -->
+    <div class="mt-10 flex justify-center">
+      <table>
+        <thead>
+          <tr>
+            <th>اسم المشروع</th>
+            <th>تاريخ البداية</th>
+            <th>تاريخ الإنتهاء</th>
+            <th>نسبة الإنجاز</th>
+            <th>انشئ بواسطة</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ project.title }}</td>
+            <td>{{ project.start_date }}</td>
+            <td>{{ project.expiry_date }}</td>
+            <td>{{ project.completness }} %</td>
+            <td>{{ project.created_by }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

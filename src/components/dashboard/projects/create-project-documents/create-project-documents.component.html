@@ -1,0 +1,52 @@
+<section>
+  <h3 class="text-3xl mb-10">أضف مستندات مشروعك</h3>
+  <form [formGroup]="documentsForm" (ngSubmit)="addDocuments()">
+    <label
+      for="project_document"
+      class="w-full bg-teal-50 rounded-lg flex flex-col justify-center items-center gap-10 py-10 cursor-pointer"
+    >
+      <img
+        ngSrc="assets/images/upload.png"
+        alt="Upload"
+        width="100"
+        height="100"
+      />
+      <p class="text-teal-600">اضغط هنا لإضافة المستندات لمشروعك</p>
+    </label>
+    <input
+      type="file"
+      multiple
+      name="project_document"
+      id="project_document"
+      class="w-fit hidden"
+      (change)="uploadDocuments($event)"
+    />
+
+    <!-- Documents -->
+    <div class="mt-10 p-10 bg-white rounded-lg shadow-md">
+      @if (recievedDocuments.length === 0) {
+      <p class="text-center">لا يوجد مستندات.</p>
+
+      } @else {
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-10">
+        @for (recievedDocument of recievedDocuments; track $index) {
+        <div class="flex flex-col gap-1 justify-center items-center">
+          <span class="material-symbols-outlined text-teal-400 text-5xl">
+            description
+          </span>
+          <p>{{ recievedDocument.title }}</p>
+        </div>
+        }
+      </div>
+      }
+    </div>
+    <div class="mt-10 flex justify-center">
+      <button
+        class="bg-teal-700 text-white py-3 w-full rounded-lg"
+        type="submit"
+      >
+        التالي
+      </button>
+    </div>
+  </form>
+</section>

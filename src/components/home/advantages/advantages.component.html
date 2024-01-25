@@ -1,0 +1,52 @@
+<section class="text-teal-700 py-20 container">
+  <h3 class="text-center text-3xl mb-10">
+    المميزات التي يضيفها لك مهمة لإدارة مشروعك
+  </h3>
+  <div class="hidden lg:block">
+    <swiper-container
+      slides-per-view="4"
+      speed="500"
+      loop="true"
+      clickable="true"
+      autoplay="true"
+    >
+      @for (item of items; track item.id) {
+      <swiper-slide>
+        <div class="mb-5 flex justify-center">
+          <img
+            [ngSrc]="item.imagePath"
+            [alt]="item.title"
+            width="150"
+            height="150"
+          />
+        </div>
+        <p class="text-center">{{ item.title }}</p>
+      </swiper-slide>
+      }</swiper-container
+    >
+  </div>
+
+  <div class="block lg:hidden">
+    <swiper-container
+      slides-per-view="1"
+      speed="500"
+      loop="true"
+      clickable="true"
+      autoplay="true"
+    >
+      @for (item of items; track item.id) {
+      <swiper-slide>
+        <div class="mb-5 flex justify-center">
+          <img
+            [ngSrc]="item.imagePath"
+            [alt]="item.title"
+            width="150"
+            height="150"
+          />
+        </div>
+        <p class="text-center">{{ item.title }}</p>
+      </swiper-slide>
+      }</swiper-container
+    >
+  </div>
+</section>

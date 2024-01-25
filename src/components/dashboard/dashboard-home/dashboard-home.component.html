@@ -1,0 +1,61 @@
+<section>
+  <!-- Company Info -->
+  <div id="company_info" class="flex justify-between pb-5">
+    <div class="flex gap-5">
+      <div>
+        <img
+          [ngSrc]="apiUrl + '/' + company_logo"
+          alt="company_name"
+          width="50"
+          height="50"
+          class="rounded-full"
+        />
+      </div>
+      <div class="flex justify-center items-center">
+        <p class="text-2xl">{{ company_name }}</p>
+      </div>
+    </div>
+    <div>
+      @if(role === 'admin') {
+      <button
+        class="bg-teal-700 text-white py-3 px-5 rounded-lg"
+        (click)="createNewProject()"
+      >
+        اضافة مشروع جديد +
+      </button>
+      }
+    </div>
+  </div>
+  <div class="py-5 grid grid-cols-1 md:grid-cols-3 gap-5">
+    @for (project of projects; track project.id) {
+    <div
+      class="w-full ring-1 ring-white rounded-lg shadow overflow-hidden cursor-pointer"
+      (click)="navigateToProject(project.id)"
+    >
+      <div class="mb-3 relative" style="width: 100%; height: 200px">
+        <img [ngSrc]="apiUrl + '/' + project.logo" [alt]="project.title" fill />
+      </div>
+      <div
+        class="py-2 flex justify-between rounded-br-lg rounded-bl-lg container bg-white"
+      >
+        <div>
+          <p>{{ project.title }}</p>
+          <p>{{ project.start_date }}</p>
+        </div>
+        <div>
+          <apx-chart
+            [series]="[project.completness, 100 - project.completness]"
+            [chart]="chartOptions.chart!"
+            [labels]="chartOptions.labels!"
+            [legend]="chartOptions.legend!"
+            [dataLabels]="chartOptions.dataLabels!"
+            [colors]="chartOptions.colors!"
+            [plotOptions]="chartOptions.plotOptions!"
+            [tooltip]="chartOptions.tooltip!"
+          ></apx-chart>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</section>

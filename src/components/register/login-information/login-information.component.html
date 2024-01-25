@@ -1,0 +1,87 @@
+<div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+  <div>
+    <h3 class="text-3xl mb-5">مرحبا بك في مهمة !</h3>
+    <p class="text-lg mb-5">سجل الآن وأحصل على مميزات رائعة في إدارة مشروعك</p>
+    <div class="py-10">
+      <form
+        [formGroup]="signUpForm"
+        (ngSubmit)="signUp()"
+        class="flex flex-col gap-5"
+      >
+        <div>
+          <label for="email">البريد الإلكتروني</label>
+          <input
+            type="text"
+            name="email"
+            id="email"
+            placeholder="البريد الإلكتروني"
+            formControlName="email"
+          />
+          <div
+            *ngIf="email.invalid && (email.dirty || email.touched)"
+            class="text-rose-700"
+          >
+            <p *ngIf="email.errors?.['required']">البريد الإلكتروني مطلوب.</p>
+            <p *ngIf="email.errors?.['email']">ادخل بريد الكتروني صالح.</p>
+          </div>
+        </div>
+        <div>
+          <label for="password">كلمة المرور</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="********"
+            formControlName="password"
+          />
+          <div
+            *ngIf="password.invalid && (password.dirty || password.touched)"
+            class="text-rose-700"
+          >
+            <p *ngIf="password.errors?.['required']">كلمة المرور مطلوبة.</p>
+            <p *ngIf="password.errors?.['minlength']">
+              ادخل كلمة مرور قوية مكونة من 6 خانات على الأقل.
+            </p>
+          </div>
+        </div>
+
+        <div class="pt-5">
+          <button
+            class="bg-teal-700 rounded-lg text-white w-full py-2"
+            type="submit"
+          >
+            التالي
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Terms & Conditions -->
+    <div>
+      <p class="text-center">عند تسجيلك الى الموقع فإنك توافق على</p>
+      <p class="text-center">
+        <a routerLink="/terms-and-conditions" class="text-teal-700"
+          >شروط الاستخدام</a
+        >
+        و
+        <a routerLink="/privacy-policy" class="text-teal-700">سياسة الخصوصية</a>
+      </p>
+    </div>
+
+    <!-- Login -->
+    <div class="pt-10">
+      <p class="text-center">
+        لديك حساب بالفعل
+        <a routerLink="/login" class="text-teal-700">سجل دخولك الآن</a>
+      </p>
+    </div>
+  </div>
+  <div>
+    <img
+      ngSrc="assets/images/register/1.png"
+      alt="Login"
+      width="400"
+      height="400"
+    />
+  </div>
+</div>

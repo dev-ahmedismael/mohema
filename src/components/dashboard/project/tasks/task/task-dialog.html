@@ -1,0 +1,16 @@
+<section
+  class="bg-white p-5 overflow-y-scroll"
+  style="height: 200px; width: 350px"
+>
+  @if (data.type == 'team') { @for (employee of data.employees; track
+  employee.id) {
+  <div class="mb-5 flex flex-col justify-center items-center">
+    <p>{{employee.username}}</p>
+  </div>
+
+  } } @else{ @for (goal of data.goals; track goal.id) {
+  <div class="mb-5 flex flex-col justify-center items-center">
+    <p>{{goal.title}}</p>
+  </div>
+  } }
+</section>

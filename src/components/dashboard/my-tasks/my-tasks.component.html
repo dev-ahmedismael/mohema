@@ -1,0 +1,98 @@
+<section class="grid grid-cols-1 md:grid-cols-2 gap-10">
+  <!-- Late tasks -->
+  <div class="bg-white rounded-lg shadow-md overflow-hidden">
+    <div id="banner-1" class="text-center text-white text-2xl py-2">
+      <p>المهام المتأخرة</p>
+    </div>
+
+    <div class="py-5 container">
+      <table>
+        <thead>
+          <tr>
+            <th>إكمال المهمة</th>
+            <th>اسم المهمة</th>
+            <th>تاريخ الإنتهاء</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for (task of lateTasks; track task.id) {
+          <tr>
+            <td></td>
+            <td>{{ task.title }}</td>
+            <td>{{ task.expiry_date }}</td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- One day remainaing tasks -->
+  <div class="bg-white rounded-lg shadow-md overflow-hidden">
+    <div id="banner-2" class="text-center text-white text-2xl py-2">
+      <p>مهام متبقي عليها يوم واحد</p>
+    </div>
+    <div class="min-h-52 max-h-52">
+      <div class="py-5 container">
+        <div class="relative w-full overflow-x-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>إكمال المهمة</th>
+                <th>اسم المهمة</th>
+                <th>تاريخ الإنتهاء</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              @for (task of oneDayRemainingTasks; track task.id) {
+              <tr>
+                <td>
+                  <div>
+                    <input type="checkbox" />
+                  </div>
+                </td>
+                <td>
+                  {{ task.title }}
+                </td>
+                <td>{{ task.expiry_date }}</td>
+              </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- All Tasks -->
+  <div class="col-span-2 bg-white rounded-lg shadow-md overflow-hidden">
+    <div id="banner-3" class="text-center text-white text-2xl py-2">
+      <p>جميع المهام</p>
+    </div>
+    <div class="min-h-52">
+      <div class="py-5 container">
+        <table>
+          <thead>
+            <tr>
+              <th>إكمال المهمة</th>
+              <th>اسم المهمة</th>
+              <th>تاريخ الإنتهاء</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @for (task of tasks; track task.id) {
+            <tr>
+              <td></td>
+              <td>{{ task.title }}</td>
+              <td>{{ task.expiry_date }}</td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,64 @@
+<div class="bg-white p-5" style="width: 300px">
+  <h3 class="text-teal-700 mb-5">إضافة طلب جديد</h3>
+  <form
+    [formGroup]="requestForm"
+    (submit)="onSubmit()"
+    class="flex flex-col gap-5"
+  >
+    <div>
+      <label for="title">عنوان الطلب</label>
+      <input
+        type="text"
+        placeholder="عنوان الطلب"
+        name="title"
+        formControlName="title"
+        id="title"
+      />
+      @if (title.invalid && (title.touched || title.dirty)) { @if
+      (title.errors?.['required']) {
+      <p class="text-rose-700">ادخل عنوان للطلب.</p>
+      } }
+    </div>
+
+    <div>
+      <label for="description">وصف الطلب</label>
+      <textarea
+        type="text"
+        placeholder="وصف الطلب"
+        name="description"
+        formControlName="description"
+        id="description"
+        rows="3"
+      ></textarea>
+      @if (description.invalid && (description.touched || description.dirty)) {
+      <p class="text-rose-700">ادخل وصف للطلب.</p>
+      }
+    </div>
+
+    <div>
+      <label for="to">المرسل إليه</label>
+      <input
+        type="search"
+        id="to"
+        name="to"
+        formControlName="to"
+        list="members"
+        placeholder="اسم المرسل إليه"
+      />
+      <datalist id="members">
+        @for (member of data.projectTeam; track member.id) {
+        <option [value]="member.username"></option>
+        }
+      </datalist>
+      @if (to.invalid && (to.touched || to.dirty)) {
+      <p class="text-rose-700">ادخل اسم المرسل إليه.</p>
+      }
+    </div>
+
+    <div class="flex justify-center">
+      <button type="submit" class="bg-teal-700 text-white rounded-lg py-3 px-5">
+        إرسال
+      </button>
+    </div>
+  </form>
+</div>

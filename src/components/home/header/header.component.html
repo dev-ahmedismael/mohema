@@ -1,0 +1,40 @@
+<header class="h-screen relative mb-28">
+  <img ngSrc="assets/images/header.png" alt="Header" fill />
+  <div class="absolute w-full h-full pt-5 md:pt-20 flex flex-col gap-5">
+    <div class="container relative">
+      <h1 class="text-5xl text-white text-center leading-relaxed lg:mb-5">
+        مرحبًا بك في عالم الإنجازات! ابدأ اليوم مع مهمة ...
+      </h1>
+      <h2 class="text-4xl text-white text-center mb-5 lg:mb-10">
+        تحكم في مشاريعك بنقرة واحدة
+      </h2>
+
+      <!-- Buttons -->
+      <div class="flex justify-center gap-5">
+        <a routerLink="/register">
+          <button
+            class="bg-white text-teal-700 py-3 px-5 md:px-10 rounded-lg active:bg-teal-50 active:ring-white active:ring-1"
+          >
+            انشاء حساب جديد
+          </button></a
+        >
+        <a routerLink="/login">
+          <button
+            class="bg-white text-teal-700 py-3 px-5 md:px-10 rounded-lg active:bg-teal-50 active:ring-white active:ring-1"
+          >
+            تسجيل الدخول
+          </button></a
+        >
+      </div>
+
+      <!-- Images -->
+      <div class="hidden lg:grid grid-cols-3 gap-5 w-full h-96">
+        @for (image of images; track $index) {
+        <div class="flex flex-col justify-end relative">
+          <img [ngSrc]="image" alt="Illustrative image" fill />
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+</header>

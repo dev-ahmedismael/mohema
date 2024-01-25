@@ -1,0 +1,102 @@
+<section>
+  <h3 class="text-3xl mb-10">إضافة مشروع جديد</h3>
+  <form [formGroup]="projectForm" (ngSubmit)="createProject()">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-20">
+      <div class="flex flex-col gap-5">
+        <div>
+          <label for="title">اسم المشروع</label>
+          <input type="text" id="title" name="title" formControlName="title" />
+          <div
+            *ngIf="title.invalid && (title.dirty || title.touched)"
+            class="text-rose-700"
+          >
+            <p *ngIf="title.errors?.['required']">اسم المشروع مطلوب.</p>
+          </div>
+        </div>
+        <div>
+          <label for="description">وصف المشروع</label>
+          <textarea
+            type="text"
+            id="description"
+            name="description"
+            formControlName="description"
+            rows="3"
+          ></textarea>
+          <div
+            *ngIf="
+              description.invalid && (description.dirty || description.touched)
+            "
+            class="text-rose-700"
+          >
+            <p *ngIf="description.errors?.['required']">وصف المشروع مطلوب.</p>
+          </div>
+        </div>
+        <div>
+          <label for="logo">اضف شعار لمشروعك</label>
+          <input
+            type="file"
+            id="logo"
+            name="logo"
+            formControlName="logo"
+            style="border: none !important"
+            (change)="uploadLogo($event)"
+          />
+          <div
+            *ngIf="logo.invalid && (logo.dirty || logo.touched)"
+            class="text-rose-700"
+          >
+            <p *ngIf="logo.errors?.['required']">الشعار مطلوب.</p>
+          </div>
+        </div>
+
+        <!-- Submit / Skip Button -->
+        <div>
+          <button
+            type="submit"
+            class="bg-teal-700 text-white py-3 mt-5 rounded-lg w-full"
+          >
+            التالي
+          </button>
+        </div>
+      </div>
+
+      <!-- Left side -->
+      <div class="flex flex-col gap-5">
+        <div>
+          <label for="start_date">تاريخ بداية المشروع</label>
+          <input
+            type="date"
+            id="start_date"
+            name="start_date"
+            formControlName="start_date"
+          />
+          <div
+            *ngIf="
+              start_date.invalid && (start_date.dirty || start_date.touched)
+            "
+            class="text-rose-700"
+          >
+            <p *ngIf="start_date.errors?.['required']">التاريخ مطلوب.</p>
+          </div>
+        </div>
+        <div>
+          <label for="expiry_date">تاريخ انتهاء المشروع</label>
+          <input
+            type="date"
+            id="expiry_date"
+            name="expiry_date"
+            formControlName="expiry_date"
+          />
+          <div
+            *ngIf="
+              expiry_date.invalid && (expiry_date.dirty || expiry_date.touched)
+            "
+            class="text-rose-700"
+          >
+            <p *ngIf="expiry_date.errors?.['required']">التاريخ مطلوب.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</section>

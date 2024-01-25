@@ -1,1 +1,47 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: "Cairo", sans-serif;
+}
+body {
+  background-color: #f0fdfa;
+}
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+input,
+select {
+  border: 2px solid #14b8a6 !important;
+  border-radius: 7px;
+  width: 100%;
+  padding-left: 7px !important;
+  padding-right: 7px !important;
+  height: 40px;
+}
+textarea {
+  border: 2px solid #14b8a6 !important;
+  border-radius: 7px;
+  width: 100%;
+  padding-left: 7px !important;
+  padding-right: 7px !important;
+}
+textarea:focus {
+  outline: none;
+}
+input:focus {
+  outline: none;
+}
+select:focus {
+  outline: none;
+}
+
+td {
+  background-color: #ccfbf1;
+  padding: 10px 20px !important;
+  border: 5px solid white !important;
+  border-radius: 15px !important;
+  max-width: 200px !important;
+}

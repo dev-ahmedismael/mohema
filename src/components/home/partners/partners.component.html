@@ -1,0 +1,38 @@
+<section class="container text-teal-700 py-10">
+  <h3 class="text-center text-3xl mb-10">شركاؤنا</h3>
+
+  <div class="hidden lg:block">
+    <swiper-container
+      slides-per-view="4"
+      speed="500"
+      loop="true"
+      clickable="true"
+      autoplay="true"
+    >
+      @for (partner of partners; track $index) {
+      <swiper-slide>
+        <div class="mb-5 flex justify-center">
+          <img [ngSrc]="partner" alt="Company" width="150" height="150" />
+        </div>
+      </swiper-slide>
+      }</swiper-container
+    >
+  </div>
+  <div class="block lg:hidden">
+    <swiper-container
+      slides-per-view="1"
+      speed="500"
+      loop="true"
+      clickable="true"
+      autoplay="true"
+    >
+      @for (partner of partners; track $index) {
+      <swiper-slide>
+        <div class="mb-5 flex justify-center">
+          <img [ngSrc]="partner" alt="Company" width="150" height="150" />
+        </div>
+      </swiper-slide>
+      }</swiper-container
+    >
+  </div>
+</section>

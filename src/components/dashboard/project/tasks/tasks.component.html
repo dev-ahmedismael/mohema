@@ -1,0 +1,55 @@
+<section>
+  <div class="flex justify-end">
+    <a
+      routerLink="/dashboard/project/create-new-task"
+      class="bg-teal-600 text-white py-3 px-5 rounded-lg shadow active:ring-1 active:ring-teal-200"
+    >
+      إضافة مهمة جديدة +
+    </a>
+  </div>
+  <div
+    class="mt-5 bg-white shadow-md rounded-lg py-10 container flex justify-center"
+  >
+    @if(tasks.length === 0){
+    <div class="flex flex-col justify-center items-center gap-10">
+      <div>
+        <img
+          ngSrc="assets/images/no_items.png"
+          alt="No items"
+          width="300"
+          height="300"
+        />
+      </div>
+      <p>لا توجد مهام في مشروعك</p>
+    </div>
+    } @else {
+    <table>
+      <thead>
+        <th>اسم المهمة</th>
+        <th>المنشئ</th>
+        <th>تاريخ بداية المهمة</th>
+        <th>تاريخ انتهاء المهمة</th>
+        <th>نسبة الإنجاز</th>
+        <th>عرض المهمة</th>
+      </thead>
+      <tbody>
+        @for (task of tasks; track task.id) {
+        <tr>
+          <td class="bg-teal-600 text-white">{{ task.title }}</td>
+          <td>{{ task.created_by }}</td>
+          <td>{{ task.start_date }}</td>
+          <td>{{ task.expiry_date }}</td>
+          <td>{{ task.completness }} %</td>
+          <td
+            class="text-teal-700 underline cursor-pointer"
+            (click)="navigateToTask(task.id)"
+          >
+            رؤية التفاصيل
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+    }
+  </div>
+</section>

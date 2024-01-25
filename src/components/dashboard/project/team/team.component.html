@@ -1,0 +1,43 @@
+<section>
+  <div class="flex justify-end">
+    <button
+      (click)="openDialog('add-member', 'null')"
+      class="bg-teal-600 text-white rounded-lg shadow-md py-3 px-5 active:ring-1 active:ring-teal-200"
+    >
+      إضافة عضو للفريق +
+    </button>
+  </div>
+  <div
+    class="mt-5 bg-white shadow-md rounded-lg py-10 container flex justify-center"
+  >
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>اسم العضو</th>
+          <th>الوظيفة</th>
+          <th>تاريخ التسجيل</th>
+          <th>بيانات العضو</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (employee of employees ; track employee.id; let index = $index ) {
+        <tr>
+          <td>{{ index + 1 }}</td>
+          <td>{{ employee.username }}</td>
+          <td>{{ employee.job }}</td>
+          <td>{{ parseDate(employee.created_at) }}</td>
+          <td class="text-teal-700 underline cursor-pointer">عرض التفاصيل</td>
+          <td
+            class="bg-teal-700 text-white cursor-pointer"
+            (click)="openDialog('add-mission', employee.id)"
+          >
+            تكليف بمهمة
+          </td>
+        </tr>
+
+        }
+      </tbody>
+    </table>
+  </div>
+</section>

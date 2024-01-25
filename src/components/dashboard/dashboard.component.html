@@ -1,0 +1,125 @@
+<section>
+  <!-- Search Box -->
+  <div id="search_box" class="py-2">
+    <div class="container">
+      <div class="flex justify-end gap-5">
+        <a
+          routerLink="/dashboard/home"
+          class="bg-white rounded-lg px-2 flex justify-center items-center cursor-pointer"
+        >
+          <span class="material-symbols-outlined text-teal-500"> home </span>
+        </a>
+        <div
+          class="bg-white rounded-lg px-2 flex justify-center items-center cursor-pointer"
+        >
+          <span class="material-symbols-outlined text-teal-500">
+            notifications
+          </span>
+        </div>
+        <div class="flex">
+          <div
+            class="bg-zinc-100 cursor-pointer pt-1 px-3 rounded-tr-lg rounded-br-lg"
+          >
+            <span class="material-symbols-outlined text-teal-500">
+              search
+            </span>
+          </div>
+          <input
+            type="text"
+            placeholder="بحث"
+            style="
+              border-top-right-radius: 0;
+              border-bottom-right-radius: 0;
+              border: none !important;
+              height: 35px;
+            "
+          />
+        </div>
+        <div
+          class="rounded-lg bg-white flex justify-center items-center px-2 cursor-pointer"
+        >
+          <span class="material-symbols-outlined text-teal-500 text-2xl">
+            person
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="flex">
+    <aside class="bg-teal-500 text-white min-h-screen p-5" style="width: 300px">
+      <!-- User -->
+      <div class="flex items-center gap-5 border-b-2 border-b-white pb-5">
+        <div
+          class="rounded-full bg-white flex justify-center items-center p-3 cursor-pointer"
+        >
+          <span class="material-symbols-outlined text-teal-500"> person </span>
+        </div>
+        <p class="text-nowrap text-lg">{{ username }}</p>
+      </div>
+
+      <!-- My tasks -->
+      <a class="mt-5 flex gap-3" routerLink="/dashboard/my-tasks">
+        <span class="material-symbols-outlined"> task_alt </span>
+        <p>مهامي</p>
+      </a>
+
+      <!-- Projects -->
+      <div class="py-5 border-b-2 border-white">
+        <mat-accordion>
+          <mat-expansion-panel
+            (opened)="panelOpenState = true"
+            (closed)="panelOpenState = false"
+            class="bg-teal-50"
+          >
+            <mat-expansion-panel-header>
+              <mat-panel-title class="text-teal-600">
+                <p>المشاريع</p>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            @if (projects.length === 0) {
+            <p class="whitespace-pre-wrap text-teal-600">
+              ليس لديك مشاريع في الوقت الحالي.
+            </p>
+            } @else { @for (project of projects; track project.id) {
+            <div class="flex gap-5 mb-5">
+              <div>
+                <img
+                  [ngSrc]="apiUrl + '/' + project.logo"
+                  [alt]="project.title"
+                  width="30"
+                  height="30"
+                  style="width: 35px; height: 35px"
+                  class="rounded-full ring-1 ring-white"
+                />
+              </div>
+              <div class="text-teal-600 flex justify-center items-center">
+                <p>{{ project.title }}</p>
+              </div>
+            </div>
+            } }
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+
+      <!-- Static Items -->
+      <div class="py-5">
+        @for (item of staticItems; track item.id) {
+
+        <div class="flex items-center gap-5">
+          <div>
+            <span class="material-symbols-outlined text-4xl">
+              {{ item.icon }}</span
+            >
+          </div>
+          <a [routerLink]="item.path">
+            <p>{{ item.title }}</p></a
+          >
+        </div>
+        }
+      </div>
+    </aside>
+    <div class="bg-slate-200 p-5 w-full">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</section>

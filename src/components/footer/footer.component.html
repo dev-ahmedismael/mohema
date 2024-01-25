@@ -1,0 +1,58 @@
+<footer class="text-white py-10">
+  <div class="container grid grid-cols-1 md:grid-cols-4 gap-5 items-center">
+    <!-- Logo -->
+    <a routerLink="">
+      <img
+        ngSrc="assets/images/logo.png"
+        alt="Logo"
+        width="60"
+        height="60"
+        priority
+      />
+    </a>
+
+    <!-- Links -->
+    <div class="md:col-span-2">
+      <!-- Navlinks -->
+      <ul class="flex-col md:flex md:flex-row justify-center mb-5 gap-5">
+        @for (navlink of navlinks; track navlink.id) {
+        <li class="cursor-pointer">{{ navlink.title }}</li>
+        }
+      </ul>
+
+      <!-- Quick Links -->
+      <ul class="flex-col md:flex md:flex-row justify-center mb-5 gap-5">
+        @for (link of quicklinks; track link.id) {
+        <li class="cursor-pointer">{{ link.title }}</li>
+        }
+      </ul>
+
+      <!-- Social Media Icons on Small Screen -->
+      <div class="flex md:hidden gap-3 mb-5">
+        @for (item of socialMediaItems; track item.id) {
+        <a [href]="item.url" target="_blank">
+          <img
+            [ngSrc]="item.iconPath"
+            [alt]="item.title"
+            width="20"
+            height="20"
+        /></a>
+        }
+      </div>
+
+      <!-- Copyright -->
+      <p class="text-start md:text-center">
+        © 2024 جميع الحقوق محفوظة لشركة رؤية الأشياء
+      </p>
+    </div>
+
+    <!-- Social Media Icons -->
+    <div class="hidden md:flex gap-3 justify-end">
+      @for (item of socialMediaItems; track item.id) {
+      <a [href]="item.url" target="_blank">
+        <img [ngSrc]="item.iconPath" [alt]="item.title" width="20" height="20"
+      /></a>
+      }
+    </div>
+  </div>
+</footer>

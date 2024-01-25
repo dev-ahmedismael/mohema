@@ -1,0 +1,26 @@
+<section>
+  <div class="flex justify-end mb-5">
+    <div>
+      <button
+        class="bg-teal-600 text-white py-3 px-5 rounded-lg active:ring-1 active:ring-teal-200"
+        (click)="openDialog()"
+      >
+        إضافة طلب جديد +
+      </button>
+    </div>
+  </div>
+  <div class="bg-white rounded-lg shadow-md pb-10 container overflow-hidden">
+    <div class="text-teal-700 grid grid-cols-3 rounded-lg gap-5 py-5">
+      @for (tab of tabs; track tab.id) {
+      <a
+        [routerLink]="tab.path"
+        class="ring-1 ring-teal-600 py-2 rounded-lg"
+        routerLinkActive="active"
+      >
+        <p class="text-center">{{ tab.title }}</p>
+      </a>
+      }
+    </div>
+    <div class="pt-5"><router-outlet></router-outlet></div>
+  </div>
+</section>

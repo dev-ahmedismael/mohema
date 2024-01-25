@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#search_box {
+  background: rgb(204, 251, 241);
+  background: radial-gradient(
+    circle,
+    rgba(204, 251, 241, 1) 0%,
+    rgba(153, 246, 228, 1) 100%
+  );
+}

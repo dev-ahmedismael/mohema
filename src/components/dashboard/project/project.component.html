@@ -1,0 +1,43 @@
+<section>
+  <div class="flex flex-col gap-5 pb-5 border-b-2 border-black">
+    <!-- Project Details -->
+    <div class="flex gap-5">
+      <div class="flex justify-center items-center">
+        <div
+          style="width: 75px; height: 75px"
+          class="relative rounded-full ring-2 ring-teal-500 overflow-hidden"
+        >
+          <img
+            [ngSrc]="apiUrl + '/' + project.logo"
+            [alt]="project?.title"
+            fill
+          />
+        </div>
+      </div>
+      <div>
+        <p class="text-xl">{{ project?.title }}</p>
+        <p class="text-sm">{{ project?.start_date }}</p>
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="flex justify-between">
+      @for (button of buttons; track button.id) {
+      <a
+        [routerLink]="button.path"
+        routerLinkActive="active"
+        class="bg-white text-teal-600 rounded-lg shadow py-1 px-2 flex gap-2 active:ring-1 active:ring-teal-100"
+      >
+        <span class="material-symbols-outlined"> {{ button.icon }} </span>
+        <p>{{ button.title }}</p>
+      </a>
+
+      }
+    </div>
+  </div>
+
+  <!-- Router Pages -->
+  <div class="mt-5">
+    <router-outlet></router-outlet>
+  </div>
+</section>

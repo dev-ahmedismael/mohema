@@ -1,0 +1,66 @@
+<div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+  <div>
+    <h3 class="text-3xl mb-5">سجل بياناتك الرئيسية</h3>
+    <div class="py-10">
+      <form
+        [formGroup]="signUpForm"
+        (ngSubmit)="signUp()"
+        class="flex flex-col gap-5"
+      >
+        <div>
+          <label for="username">اسم المستخدم</label>
+          <input
+            type="text"
+            name="username"
+            id="username"
+            placeholder="اسم المستخدم"
+            formControlName="username"
+          />
+          <div
+            *ngIf="username.invalid && (username.dirty || username.touched)"
+            class="text-rose-700"
+          >
+            <p *ngIf="username.errors?.['required']">اسم المستخدم مطلوب.</p>
+          </div>
+        </div>
+        <div>
+          <label for="phone">رقم الجوال</label>
+          <input
+            type="text"
+            name="phone"
+            id="phone"
+            placeholder="********05"
+            formControlName="phone"
+          />
+          <div
+            *ngIf="phone.invalid && (phone.dirty || phone.touched)"
+            class="text-rose-700"
+          >
+            <p *ngIf="phone.errors?.['required']">رقم الجوال مطلوب.</p>
+            <p *ngIf="phone.errors?.['minlength']">
+              رقم الجوال يجب أن يحتوي على 10 أرقام على الأقل.
+            </p>
+            <p *ngIf="phone.errors?.['pattern']">ادخل رقم جوال سعودي صالح.</p>
+          </div>
+        </div>
+
+        <div class="pt-5">
+          <button
+            class="bg-teal-700 rounded-lg text-white w-full py-2"
+            type="submit"
+          >
+            التالي
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div>
+    <img
+      ngSrc="assets/images/register/1.png"
+      alt="Login"
+      width="400"
+      height="400"
+    />
+  </div>
+</div>

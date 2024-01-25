@@ -1,0 +1,48 @@
+<form [formGroup]="loginForm" (ngSubmit)="login()" class="flex flex-col gap-5">
+  <div>
+    <label for="email">البريد الإلكتروني</label>
+    <input
+      type="text"
+      name="email"
+      id="email"
+      placeholder="البريد الإلكتروني"
+      formControlName="email"
+    />
+    <div
+      *ngIf="email.invalid && (email.dirty || email.touched)"
+      class="text-rose-700"
+    >
+      <p *ngIf="email.errors?.['required']">البريد الإلكتروني مطلوب.</p>
+      <p *ngIf="email.errors?.['email']">ادخل بريد الكتروني صالح.</p>
+    </div>
+  </div>
+  <!-- <div>
+          <label for="password">كلمة المرور</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="********"
+            formControlName="password"
+          />
+          <div
+            *ngIf="password.invalid && (password.dirty || password.touched)"
+            class="text-rose-700"
+          >
+            <p *ngIf="password.errors?.['required']">كلمة المرور مطلوبة.</p>
+            <p *ngIf="password.errors?.['minlength']">
+              ادخل كلمة مرور قوية مكونة من 6 خانات على الأقل.
+            </p>
+          </div>
+        </div> -->
+  @if (errorMessage) {
+  <div class="bg-rose-700 text-white py-2 px-5 rounded-lg">
+    <p class="text-center">{{ errorMessage }}</p>
+  </div>
+  }
+  <div class="pt-5">
+    <button class="bg-teal-700 rounded-lg text-white w-full py-2" type="submit">
+      التالي
+    </button>
+  </div>
+</form>

@@ -1,0 +1,283 @@
+<section class="mt-5 grid grid-cols-1 md:grid-cols-2 gap-10">
+  <!-- Task Form -->
+  <div>
+    <form [formGroup]="taskForm" (submit)="createTask()">
+      <div class="bg-white rounded-lg shadow-md">
+        <div class="flex gap-5">
+          <div>
+            <img
+              ngSrc="assets/images/task.png"
+              alt="Task"
+              width="150"
+              height="150"
+            />
+          </div>
+          <div>
+            <p class="text-lg">المهام</p>
+            <p class="text-sm">
+              حدد عدد المهام التي تحقق نجاح وإتمام مشروعك مع إضافة كافة التفاصيل
+              التي تساعدك على إتمام المهمة
+            </p>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <div class="container py-10 flex flex-col gap-5">
+          <!-- Title -->
+          <div>
+            <label for="title">اسم المهمة</label>
+            <input
+              type="text"
+              id="title"
+              name="title"
+              formControlName="title"
+            />
+            <div
+              *ngIf="title.invalid && (title.dirty || title.touched)"
+              class="text-rose-700"
+            >
+              <p *ngIf="title.errors?.['required']">اسم المهمة مطلوب.</p>
+            </div>
+          </div>
+
+          <!-- Description -->
+          <div>
+            <label for="description">وصف المهمة</label>
+            <textarea
+              type="text"
+              id="description"
+              name="description"
+              formControlName="description"
+              rows="3"
+            ></textarea>
+            <div
+              *ngIf="
+                description.invalid &&
+                (description.dirty || description.touched)
+              "
+              class="text-rose-700"
+            >
+              <p *ngIf="description.errors?.['required']">وصف المهمة مطلوب.</p>
+            </div>
+          </div>
+
+          <!-- Cost -->
+          <div>
+            <label for="cost"> التكلفة </label>
+            <input type="text" id="cost" name="cost" formControlName="cost" />
+            <div
+              *ngIf="cost.invalid && (cost.dirty || cost.touched)"
+              class="text-rose-700"
+            >
+              <p *ngIf="cost.errors?.['required']">التكلفة مطلوبة.</p>
+            </div>
+          </div>
+
+          <!-- Start Date -->
+          <div>
+            <label for="start_date">تاريخ بداية المهمة</label>
+            <input
+              type="date"
+              id="start_date"
+              name="start_date"
+              formControlName="start_date"
+            />
+            <div
+              *ngIf="
+                start_date.invalid && (start_date.dirty || start_date.touched)
+              "
+              class="text-rose-700"
+            >
+              <p *ngIf="start_date.errors?.['required']">التاريخ مطلوب.</p>
+            </div>
+          </div>
+
+          <!-- Expiry Date -->
+          <div>
+            <label for="expiry_date">تاريخ انتهاء المهمة</label>
+            <input
+              type="date"
+              id="expiry_date"
+              name="expiry_date"
+              formControlName="expiry_date"
+            />
+            <div
+              *ngIf="
+                expiry_date.invalid &&
+                (expiry_date.dirty || expiry_date.touched)
+              "
+              class="text-rose-700"
+            >
+              <p *ngIf="expiry_date.errors?.['required']">التاريخ مطلوب.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pt-10">
+        <button
+          class="bg-teal-600 text-white rounded-lg shadow py-3 w-full active:ring-1 active:ring-teal-200"
+        >
+          حفظ المهمة
+        </button>
+      </div>
+    </form>
+  </div>
+  <!-- Goals & documents forms -->
+  <div>
+    <!-- Goals Form -->
+    <div class="pb-10 bg-white rounded-lg shadow-md">
+      <div class="flex gap-5">
+        <div>
+          <img
+            ngSrc="assets/images/goals.png"
+            alt="Task"
+            width="150"
+            height="150"
+          />
+        </div>
+        <div>
+          <p class="text-lg">الأهداف</p>
+          <p class="text-sm">
+            يساعدك تقسيم مهامك على إنجاز المهام بشكل سلس وفعال ويساعد فريق العمل
+            على فهم المطلوب
+          </p>
+        </div>
+      </div>
+      <div class="container py-10">
+        <form [formGroup]="goalsForm">
+          <div
+            formArrayName="aliases"
+            *ngFor="let alias of aliases.controls; let i = index"
+            class="mb-5"
+          >
+            <div [formGroupName]="i">
+              <label for="title-{{ i }}"> عنوان الهدف:</label>
+              <input id="title-{{ i }}" type="text" formControlName="title" />
+              <div
+                class="text-rose-700"
+                *ngIf="
+                  aliases.controls[i].get('title')?.hasError('required') &&
+                  aliases.controls[i].get('title')?.touched
+                "
+              >
+                عنوان الهدف مطلوب
+              </div>
+              <label for="description-{{ i }}"> وصف الهدف:</label>
+              <input
+                id="description-{{ i }}"
+                type="text"
+                formControlName="description"
+              />
+              <div
+                class="text-rose-700"
+                *ngIf="
+                  aliases.controls[i]
+                    .get('description')
+                    ?.hasError('required') &&
+                  aliases.controls[i].get('description')?.touched
+                "
+              >
+                وصف الهدف مطلوب
+              </div>
+            </div>
+          </div>
+          <button
+            class="text-teal-700 underline mt-5"
+            type="button"
+            (click)="addAlias()"
+          >
+            إضافة هدف آخر +
+          </button>
+
+          <button
+            class="hidden mt-5 bg-teal-700 text-white rounded-lg py-2 w-full"
+            type="submit"
+            [disabled]="!goalsForm.valid"
+          >
+            حفظ
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Documents Form -->
+    <div class="mt-10 pb-10 bg-white rounded-lg shadow-md">
+      <div class="flex gap-5">
+        <div>
+          <img
+            ngSrc="assets/images/documents.png"
+            alt="Task"
+            width="150"
+            height="150"
+          />
+        </div>
+        <div>
+          <p class="text-lg">المستندات</p>
+          <p class="text-sm">
+            يمكنك إضافة المستندات الخاصة بالمهمة إن وجدت والرجوع إليها مرة أخرى
+            وتحميلها بكل سهولة ويسر.
+          </p>
+        </div>
+      </div>
+      <div class="py-10">
+        <form [formGroup]="documentsForm">
+          <div class="container">
+            <label
+              for="project_document"
+              class="w-full bg-teal-50 rounded-lg flex flex-col justify-center items-center gap-10 py-10 border-2 border-dashed border-teal-700 cursor-pointer"
+            >
+              <img
+                ngSrc="assets/images/upload.png"
+                alt="Upload"
+                width="100"
+                height="100"
+              />
+              <p class="text-teal-600">اضغط هنا لإضافة المستندات لمشروعك</p>
+            </label>
+            <input
+              type="file"
+              multiple
+              name="project_document"
+              id="project_document"
+              class="w-fit hidden"
+              (change)="uploadDocuments($event)"
+            />
+          </div>
+
+          <!-- Documents -->
+          <!-- <div class="container">
+            <div class="mt-10 p-10 bg-white rounded-lg shadow-md">
+              @if (recievedDocuments.length === 0) {
+              <p class="text-center">لا يوجد مستندات.</p>
+
+              } @else {
+              <div class="grid grid-cols-1 md:grid-cols-5 gap-10">
+                @for (recievedDocument of recievedDocuments; track $index) {
+                <div class="flex flex-col gap-1 justify-center items-center">
+                  <span
+                    class="material-symbols-outlined text-teal-400 text-5xl"
+                  >
+                    description
+                  </span>
+                  <p>{{ recievedDocument.title }}</p>
+                </div>
+                }
+              </div>
+              }
+            </div>
+          </div> -->
+          <div class="hidden">
+            <div>
+              <button
+                class="bg-teal-700 text-white py-3 px-10 w-full rounded-lg"
+                type="submit"
+              >
+                حفظ المستندات
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

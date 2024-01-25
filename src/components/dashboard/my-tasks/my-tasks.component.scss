@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#banner-1 {
+  background: rgb(244, 63, 94);
+  background: linear-gradient(
+    45deg,
+    rgba(244, 63, 94, 1) 0%,
+    rgba(190, 18, 60, 1) 100%
+  );
+}
+#banner-2 {
+  background: rgb(251, 191, 36);
+  background: linear-gradient(
+    45deg,
+    rgba(251, 191, 36, 1) 0%,
+    rgba(251, 146, 60, 1) 100%
+  );
+}
+#banner-3 {
+  background: rgb(45, 212, 191);
+  background: linear-gradient(
+    45deg,
+    rgba(45, 212, 191, 1) 0%,
+    rgba(13, 148, 136, 1) 100%
+  );
+}
+
+table {
+  font-size: small;
+}
+td {
+  width: max-content !important;
+  text-wrap: nowrap;
+}

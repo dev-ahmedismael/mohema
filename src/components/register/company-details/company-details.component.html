@@ -1,0 +1,74 @@
+<div *ngIf="errorMessage" class="flex justify-center mb-10">
+  <div class="bg-rose-700 py-2 px-5 rounded-lg w-fit">
+    <p class="text-center text-white">{{ errorMessage }}</p>
+  </div>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+  <div>
+    <h3 class="text-3xl mb-5">ابدأ في إنشاء شكل شركتك!</h3>
+    <div class="py-10">
+      <form
+        [formGroup]="companyForm"
+        (ngSubmit)="createCompany()"
+        class="flex flex-col gap-5"
+      >
+        <div>
+          <label for="company_name">اسم الشركة</label>
+          <input
+            type="text"
+            name="company_name"
+            id="company_name"
+            placeholder="اكتب اسم شركتك"
+            formControlName="company_name"
+          />
+          <div
+            *ngIf="
+              company_name.invalid &&
+              (company_name.dirty || company_name.touched)
+            "
+            class="text-rose-700"
+          >
+            <p *ngIf="company_name.errors?.['required']">اسم الشركة مطلوب.</p>
+          </div>
+        </div>
+        <div>
+          <label for="company_logo"> اضف شعار شركتك</label>
+          <input
+            type="file"
+            name="company_logo"
+            id="company_logo"
+            formControlName="company_logo"
+            (change)="uploadLogo($event)"
+          />
+          <div
+            *ngIf="
+              company_logo.invalid &&
+              (company_logo.dirty || company_logo.touched)
+            "
+            class="text-rose-700"
+          >
+            <p *ngIf="company_logo.errors?.['required']">شعار الشركة مطلوب.</p>
+          </div>
+        </div>
+
+        <div class="pt-5">
+          <button
+            class="bg-teal-700 rounded-lg text-white w-full py-2"
+            type="submit"
+          >
+            التالي
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div>
+    <img
+      ngSrc="assets/images/register/2.png"
+      alt="Login"
+      width="400"
+      height="400"
+    />
+  </div>
+</div>

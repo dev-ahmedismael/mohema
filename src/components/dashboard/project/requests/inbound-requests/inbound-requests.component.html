@@ -1,0 +1,24 @@
+<div class="flex justify-center">
+  <table>
+    <thead>
+      <tr>
+        <th>من</th>
+        <th>إلى</th>
+        <th>عنوان الطلب</th>
+        <th>وصف الطلب</th>
+        <th>حالة الطلب</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (request of requests; track request.id) {
+      <tr>
+        <td>{{ request.from }}</td>
+        <td>{{ request.to }}</td>
+        <td>{{ request.title }}</td>
+        <td>{{ request.description }}</td>
+        <td>{{ request.status }}</td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
